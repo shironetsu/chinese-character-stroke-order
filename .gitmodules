@@ -1,0 +1,3 @@
+[submodule "stroke-seq_MB"]
+	path = stroke-seq_MB
+	url = https://github.com/YQ-YSY/stroke-seq_MB.git
