@@ -1,5 +1,4 @@
-mod chinese_character;
-use chinese_character::ChineseString;
+use chinese_character_stroke_order::chinese_character::ChineseString;
 
 fn main() {
     let mut v = vec![
@@ -96,10 +95,10 @@ fn main() {
         "黑山",
     ];
 
-    v.sort_by_key(|s|ChineseString::from(s.to_string()).unwrap());
+    v.sort_by_key(|s| ChineseString::from(s.to_string()).unwrap());
 
     //println!("{:?}", v);
-    for c in v.iter(){
+    for c in v.iter() {
         println!("{}", c);
     }
 }

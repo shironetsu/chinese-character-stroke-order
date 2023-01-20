@@ -11,7 +11,7 @@ impl ChineseCharacter {
         if STROKE_TABLE.contains_key(&c) {
             Ok(ChineseCharacter { value: c })
         } else {
-            Err(StrokeIsUnknownError)
+            Err(StrokeIsUnknownError { character: c })
         }
     }
 
@@ -22,7 +22,9 @@ impl ChineseCharacter {
 }
 
 #[derive(Debug, Clone)]
-pub struct StrokeIsUnknownError;
+pub struct StrokeIsUnknownError {
+    character: char,
+}
 
 impl PartialOrd for ChineseCharacter {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
