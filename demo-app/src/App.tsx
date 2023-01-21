@@ -21,8 +21,15 @@ import {
   Link,
   HStack,
   Spacer,
+  Accordion,
+  AccordionItem,
+  AccordionIcon,
+  AccordionButton,
+  AccordionPanel,
 } from "@chakra-ui/react";
+import { WarningIcon } from "@chakra-ui/icons";
 import { Preset, beijing2008, beijing2022 } from "../lib/presets";
+import { notices } from "../lib/notices";
 import AutoResizeTextarea from "../components/AutoResizeTextarea";
 import { FaTwitter, FaGithub } from "react-icons/fa";
 
@@ -201,13 +208,29 @@ export default function App() {
                 </Thead>
                 <Tbody>
                   {sortedCountries.map((name, i) => {
+                    const notice = notices.get(name);
                     return (
                       <Tr key={i}>
                         <Td p={0.5}>
                           <Center>{i + 1}</Center>
                         </Td>
                         <Td p={0.5}>
-                          <span lang="zh-cn">{name}</span>
+                          {notice ? (
+                            <Accordion allowToggle>
+                              <AccordionItem border="none">
+                                <AccordionButton p={0}>
+                                  <WarningIcon />
+                                  <span lang="zh-cn">{name}</span>
+                                  <AccordionIcon />
+                                </AccordionButton>
+                                <AccordionPanel p={4} maxW="full" overflow={'scroll'}>
+                                    {notice}
+                                </AccordionPanel>
+                              </AccordionItem>
+                            </Accordion>
+                          ) : (
+                            <span lang="zh-cn">{name}</span>
+                          )}
                         </Td>
                       </Tr>
                     );
