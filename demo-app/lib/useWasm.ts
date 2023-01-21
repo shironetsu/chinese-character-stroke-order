@@ -1,4 +1,4 @@
-import init, { convert } from '../wasm/pkg'
+import init, { sort, sortByStroke } from '../wasm/pkg'
 import { useEffect, useState } from 'react'
 
 type State = {
@@ -6,7 +6,8 @@ type State = {
 } | {
     loaded: true,
     ok: true,
-    convert: typeof convert
+    sort: typeof sort,
+    sortByStroke: typeof sortByStroke,
 } | {
     loaded: true,
     ok: false,
@@ -22,7 +23,8 @@ const useWasm = () => {
           setState({
             loaded: true,
             ok: true,
-            convert
+            sort,
+            sortByStroke
           })
         }).catch((error)=>{
             console.error(error)

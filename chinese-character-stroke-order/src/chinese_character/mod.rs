@@ -19,6 +19,10 @@ impl ChineseCharacter {
     pub fn from_unchecked(c: char) -> Self {
         Self::from(c).unwrap()
     }
+
+    pub fn to_char(&self) -> char {
+        self.value
+    }
 }
 
 #[derive(Debug, Clone)]
@@ -54,6 +58,10 @@ impl ChineseString {
             }
         }
         Ok(ChineseString { chars })
+    }
+
+    pub fn to_string(&self) -> String {
+        self.chars.iter().map(|c| c.to_char()).collect::<String>()
     }
 }
 
